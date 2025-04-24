@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="IE=11">
+	<title>Credit Card Panel</title>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="ccprocess.css">
+	<script src="jquery-3.4.1.min.js"></script>
+	<script src="jquery-ui.js"></script>
+	<script src="properties_setter.js"></script>
+	<script src="global_variables.js"></script>
+	<script>
+
+		window.onerror = function (msg, url, lineNo, columnNo, error) {
+			$('.loading').hide();
+			alert("Error " + msg);
+		};
+	</script>
+
+</head>
+
+<body>
+	<div class="loading" id="loading">
+		<img id="loading-image" src="images\loading.gif" alt="Loading..." />
+	</div>
+	<div class="separator">
+		<hr>
+	</div>
+	<div id="orno_wrapper" class="info_wrapper">Order Number:
+		<i>coming....</i>
+	</div>
+	<div id="cuno_wrapper" class="info_wrapper">Customer Number:
+		<i>coming....</i>
+	</div>
+	<div class="separator">
+		<hr>
+	</div>
+	<div id="test_fields_wrapper" class="test-fields-wrapper">
+		<button id="check_api_invocation" class="ccprocess-button">check api</button>
+		<br>
+		<div id="test_results_display" class="test-results-wrapper">
+			<p>Test results will go here</p>
+			<br>
+		</div>
+		<div class="separator">
+			<hr>
+		</div>
+	</div>
+
+	<div id="error_div_wrapper" class="error-fields-wrapper">
+		<div id="error_div" class="error">
+			<p>Error message will go here</p>
+		</div>
+		<div class="separator">
+			<hr>
+		</div>
+	</div>
+	<div id="process_state_div_wrapper" class="process-state-wrapper">
+		<div id="process_state_div" class="process-state">
+			<p>Process message will go here</p>
+		</div>
+		<div class="separator">
+			<hr>
+		</div>
+	</div>
+	<div id="accounts">
+		<div id="accounts_display">
+			<table id="accounts_table"></table>
+			<table id="associated_card_table"></table>
+			<div id="table_legend">
+				<p></p>
+				<table>
+					<tr>
+						<td class="default" style="width:20px;">&nbsp;</td>
+						<td>Default card for customer</td>
+					</tr>
+					<tr>
+						<td class="associated_card" style="width:20px;">&nbsp;</td>
+						<td>Card used for order</td>
+					</tr>
+				</table>
+			</div>
+			<div id="ccactions_wrapper">
+				<div class="separator">
+					<hr>
+				</div>
+				<div id="available_actions_title" class="info_wrapper">Available Actions</div>
+				<div id="ccactions_options">
+					<div id="refund_option" class="ccaction">
+						<input id="refund" type="radio" name="cc_action" />Refund</div>
+					<div id="auth0_option" class="ccaction">
+						<input id="authW0" type="radio" name="cc_action" />Authorize Card</div>
+					<div id="authActual_option" class="ccaction">
+						<input id="authWActual" type="radio" name="cc_action" />Auth w/actual</div>
+					<div id="capture_option" class="ccaction">
+						<input id="capture" type="radio" name="cc_action">Capture</input>
+					</div>
+					<div id="void_option" class="ccaction">
+						<input id="void" type="radio" name="cc_action" />Void</div>
+				</div>
+				<div id="cc_actions_button_wrapper">
+					<button id="card_action_button" class="ccprocess-logical-next">Button Title</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="new_card">
+		<div id="new_card_data" class="new-card-data-wrapper">
+			<table id="new_card_table">
+				<tr>
+					<td colspan="2" class="encryption-process-hint">
+						<i>(place mouse in the field below then enter cc number on keypad)</i>
+					</td>
+				</tr>
+				<tr class="encryption_field_label">
+					<td>Encrypted Card data</td>
+					<td class="iframe_field">
+						<iframe id="tokenframe" name="tokenframe" frameborder="0" scrolling="no" width="140"
+							height="30"></iframe>
+					</td>
+				</tr>
+				<tr class="encryption_field_label">
+					<td>Expiration Date</td>
+					<td class="expiry_field">
+						<input id="expiry" value="MMYY" />
+					</td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td>
+						<input id="cardholder_name" />
+					</td>
+				</tr>
+				<tr>
+					<td>Address</td>
+					<td>
+						<input id="cardholder_addy" />
+					</td>
+				</tr>
+				<tr>
+					<td>City</td>
+					<td>
+						<input id="cardholder_city" />
+					</td>
+				</tr>
+				<tr>
+					<td>State</td>
+					<td>
+						<input id="cardholder_region" />
+					</td>
+				</tr>
+				<tr>
+					<td>Country</td>
+					<td>
+						<input id="cardholder_country" />
+					</td>
+				</tr>
+				<tr>
+					<td>Postal Code</td>
+					<td>
+						<input id="cardholder_postal_code" />
+					</td>
+				</tr>
+				<tr>
+					<td>Phone Number</td>
+					<td>
+						<input id="cardholder_phone" />
+					</td>
+				</tr>
+				<tr>
+					<td>Email address</td>
+					<td>
+						<input id="cardholder_email" />
+					</td>
+				</tr>
+			</table>
+			<div id="submit_card_wrapper">
+				<button id="submit_card" class="ccprocess-logical-next">Authorize Card</button>
+			</div>
+			<div id="add_card_wrapper">
+				<button id="add_card" class="ccprocess-button">Add card to customer's CardConnect profile</button>
+			</div>
+			<button id="clear_card_data" class="ccprocess-button">Clear Data</button>
+		</div>
+	</div>
+	<div id="card_options_wrapper">
+		<div class="separator">
+			<hr>
+		</div>
+		<button id="change_card_button" class="ccprocess-button">Change Card</button>
+		<button id="new_card_button" class="ccprocess-button">New Card</button>
+		<button id="existing_cards_button" class="ccprocess-button">Existing Cards</button>
+	</div>
+	<div id="close_button_wrapper">
+		<button id="close_button" class="ccprocess-button">Close</button>
+	</div>
+</body>
+<script>
+
+	/*************************************************
+	*  index.html
+	*  main panel for CC UI
+	*  12/12/17
+	*
+	*************************************************/
+	function showVersion() {
+		var file_name = "index.html";
+		var script_version = "1.0.0";
+		console.log("file:" + file_name + " version:" + script_version);
+
+	}
+	showVersion();
+
+
+
+	var url_string = window.location.href;
+	orno = getParameterByName("orno", url_string);
+	divi = getParameterByName("divi", url_string);
+	cuno = getParameterByName("cuno", url_string);
+	cono = getParameterByName("cono",url_string);
+	currency = getParameterByName("cucd", url_string).toUpperCase();
+	undeliveredGoodsValue = getParameterByName("udg", url_string);
+	environment = getParameterByName("env", url_string);
+	canChangeCard = (getParameterByName("canchange", url_string) === 'true');
+	orderCountry = getParameterByName("country", url_string).toUpperCase();
+
+	// load the cc_panel_functions.js file. This way enables debugging, whereas 
+	// loading via <script..../> tag doesn't (nor, even, do the jQuery references work)
+	$.ajax({
+		crossDomain: true,
+		dataType: "script",
+		url: "cc_panel_functions.js",
+		cache: true,
+		async: false,
+		success: function () {
+			console.log("successfully loaded cc_panel_functions.js");
+			initializeApp();
+		},
+		error: function () {
+			console.log("load of cc_panel_functions.js FAILED!!");
+		}
+	});
+
+	// now that the document is fully loaded....
+	$(document).ready(function () { });  // end of $(document).ready(function()....
+
+	/* Window event listener processes response from invocation to tokenizer */
+	window.addEventListener('message', function (event) {
+		// THIS METHOD MAY BE CALLED BY ANY RETURNS FROM HTTP INVOCATIONS ???
+		// hideProcessState();
+		// hideErrorDisplay();
+		console.log("received message: " + event.data);
+		if (event.data) {
+			var response = JSON.parse(event.data);
+			tokenError = response.validationError;
+			if (typeof tokenError === "undefined") {
+				token = response.message;
+			} else {
+				displayError(tokenError);
+			}
+		}
+
+	}, false);
+
+	function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		name = name.replace(/[\[\]]/g, "\\$&");
+		var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+			results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+</script>
+
+</html>

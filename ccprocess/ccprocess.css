@@ -1,0 +1,222 @@
+body {
+	background: #e0e0e0; 
+	font-family:Arial; 
+	font-size: 13px;
+	color: #5c5c5c;
+}
+
+.ccprocess-button {
+    background:#999999;
+    color:white;
+    border:1px solid #a2a2a2;
+    border-radius:4px;
+}
+
+.ccprocess-logical-next {
+    background:#368ac0;
+    color:white;
+    border:1px solid #a2a2a2;
+    border-radius:4px;
+}
+
+.info_wrapper {
+	height: 20px;
+    width: 300px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.separator {
+    width: 350px;
+}
+
+#accounts_table {
+	display: none;
+}
+
+#accounts_table tr {
+	height:20px;
+}
+
+#associated_card_table {
+	display: none;
+}
+
+#associated_card_table tr {
+	height:20px;
+}
+
+.default {
+	background: #668b8b2e;
+}
+
+.associated_card {
+    background: #DDEDFD;
+}
+
+.new-card-data-wrapper {
+	display:none;
+}
+
+.encryption-process-hint {
+	height:10px;
+	font-size:10px;
+	color:grey;
+}
+
+.encryption_field_label {
+	height:30px;
+	background-color: #EAF7FF;
+}
+
+.iframe_field {
+	border: 1px solid #13A3F7;
+}
+
+.expiry_field {
+	border: 1px solid #13A3F7;
+	text-align: center;
+}
+
+input#expiry {
+	color: #e0e0e0;
+}
+
+#new_card_data {
+	display:none;
+}
+
+#new_card_table tr {
+	height:20px
+}
+
+#new_card_table td {
+	background:#ededed82;
+}
+
+#submit_card_wrapper {
+	height:20px;
+	margin-bottom:5px;
+}
+
+#add_card_wrapper {
+	height:20px;
+	display:none;
+}
+
+#table_legend {
+	display: none;
+}
+
+#card_options_wrapper {
+	height:20px;
+	display: none;
+}
+
+#card_change_wrapper {
+	height:20px;
+	display: none;
+}
+
+#change_card_button {
+	display: none;
+	padding-right: 10px;
+}
+
+#new_card_button {
+	display: none;
+	padding-right: 10px;
+}
+
+#existing_cards_button {
+	display: none;
+	padding-right: 10px;
+}
+
+#close_button_wrapper {
+	height:20px;
+}
+	
+.process-state-wrapper {
+    display:none;
+}
+
+.process-state {
+	background:#7ccd7c; 
+	border:1px solid #548b54;
+	color: white;
+}
+
+.test-fields-wrapper {
+ 	display:none;
+}
+
+.test-results-wrapper {
+ 	display:none;
+}
+
+.error-fields-wrapper {
+ 	display:none;
+}
+
+.error {
+	border: 1px solid #f1a899;
+	background: #fddfdf;
+	color: #5f3f3f;
+}
+
+#ccactions_options {
+	display: flex;
+    font-size: 12px;
+    width: 325px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.ccaction {
+    padding-left: 4px;
+    display: none;
+    background-color: #d6d2e4;
+}
+
+*[id^="delCard_"] {
+	padding: 1px;
+    font-size: 9px;
+}
+
+#cc_actions_button_wrapper {
+  display: none;
+}
+
+#capture_button_wrapper {
+  display: none;
+}
+
+#void_button_wrapper {
+  display: none;
+}
+
+#use_card_button_wrapper {
+	display: none;
+}
+
+#reset_button {
+    font-size: 9px;
+    background:#999999;
+    color:white;
+    border:1px solid #a2a2a2;
+    border-radius:4px;
+}
+
+#confirm_dialog {
+	height: auto;
+	width: auto;
+	top: 150px;
+	left: 60px;
+	padding: 10px;
+	word-wrap: break-word;
+}
+
+#ccactions_wrapper {
+	display: none;
+}
